@@ -118,4 +118,4 @@ console.log(jake.sprintChallenge(jake, 'Python'));
 console.log(bigKnell.demo('HTML'));
 console.log(bigKnell.grade(jake, 'CSS'));
 console.log(misterRogers.standUp('Charles', 'webpt9_charles'));
-console.log(misterRogers.debugsCode('Jake', 'JavaScript'));
+console.log(misterRogers.debugsCode('Charles', jake, 'JavaScript'));
