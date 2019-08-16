@@ -26,6 +26,15 @@ class Instructor extends Person{
     grade(student, subject){
         return `${student.name} receives a perfect score on ${subject}.`
     };
+    gradeStudent(student){
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+          };
+        function addGrade(){
+            return student.grade = student.grade + getRandomInt(50);
+        }
+        return `${student.name}'s grade is now ${addGrade()}!`
+    };
 };
 
 class Student extends Person{
@@ -34,6 +43,7 @@ class Student extends Person{
         this.previousBackground = stuAtts.previousBackground;
         this.className = stuAtts.className;
         this.favSubjects = stuAtts.favSubjects;
+        this.grade = stuAtts.grade;
     };
 
     listsSubjects(){
@@ -47,6 +57,13 @@ class Student extends Person{
     };
     sprintChallenge(student, subject){
         return `${student.name} has begun sprint challenge on ${subject}.`
+    };
+    graduate(student){
+        if(this.grade >= 70){
+            return `${this.name} has graduated!`
+        }else{
+            return `${this.name} has more work to do.`
+        }
     };
 };
 
@@ -74,6 +91,17 @@ const jake = new Student({
     favSubjects: ['HTML', 'CSS', 'JavaScript'],
     previousBackground: 'Ran a food truck',
     className: 'WEBPT9',
+    grade: 50,
+});
+
+const rach = new Student({
+    name: 'Rachel',
+    location: 'Arkansas',
+    age: 57,
+    favSubjects: ['Python', 'C++', 'Java'],
+    previousBackground: 'Filmmaker',
+    className: 'WEB29',
+    grade: 40,
 });
 
 const bigKnell = new Instructor({
@@ -83,6 +111,15 @@ const bigKnell = new Instructor({
     specialty: 'Teaching',
     favLanguage: ['JavaScript', 'Python', 'Elm'],
     catchPhrase: 'Shamalama Dingdong'
+});
+
+const pace = new Instructor({
+    name: 'Pace',
+    location: 'Arizona',
+    age: 80,
+    specialty: 'Teaching',
+    favLanguage: ['JavaScript', 'Python', 'Elm'],
+    catchPhrase: 'I love you guys!'
 });
 
 const misterRogers = new TeamLead({
@@ -96,26 +133,41 @@ const misterRogers = new TeamLead({
     favInstructor: 'Big Knell',
 });
 
+const mrsSmith = new TeamLead({
+    name: 'Becky',
+    location: 'Massachusetts',
+    age: '30',
+    specialty: 'UX',
+    favLanguage: ['JavaScript', 'Python', 'Elm'],
+    catchPhrase: 'You got this!',
+    gradClassName: 'WEB11',
+    favInstructor: 'Pace',
+});
+
 console.log(jake.age);
-console.log(jake.location);
+console.log(rach.location);
 console.log(jake.speak());
-console.log(jake.listsSubjects());
+console.log(rach.listsSubjects());
 console.log(jake.PRAssignment(jake, jake.favSubjects[2]));
-console.log(jake.sprintChallenge(jake, jake.favSubjects[0]));
+console.log(rach.sprintChallenge(rach, rach.favSubjects[0]));
 console.log(bigKnell.name);
-console.log(bigKnell.specialty);
+console.log(pace.specialty);
 console.log(bigKnell.catchPhrase);
-console.log(bigKnell.grade(jake, jake.favSubjects[0]));
+console.log(pace.grade(rach, rach.favSubjects[0]));
 console.log(bigKnell.demo(bigKnell.favLanguage[1]));
 console.log(misterRogers.age);
-console.log(misterRogers.gradClassName);
+console.log(mrsSmith.gradClassName);
 console.log(misterRogers.specialty);
-console.log(misterRogers.catchPhrase);
+console.log(mrsSmith.catchPhrase);
 console.log(misterRogers.standUp(misterRogers.name, 'webpt9_charles'));
-console.log(misterRogers.debugsCode(misterRogers.name, jake, jake.favSubjects[0]));
-console.log(jake.PRAssignment(jake, 'JavaScript'));
+console.log(mrsSmith.debugsCode(mrsSmith.name, jake, jake.favSubjects[0]));
+console.log(rach.PRAssignment(rach, 'JavaScript'));
 console.log(jake.sprintChallenge(jake, 'Python'));
 console.log(bigKnell.demo('HTML'));
-console.log(bigKnell.grade(jake, 'CSS'));
+console.log(pace.grade(rach, 'CSS'));
 console.log(misterRogers.standUp('Charles', 'webpt9_charles'));
-console.log(misterRogers.debugsCode('Charles', jake, 'JavaScript'));
+console.log(mrsSmith.debugsCode('Becky', rach, 'JavaScript'));
+console.log(bigKnell.gradeStudent(rach));
+console.log(rach.graduate());
+console.log(mrsSmith.gradeStudent(jake));
+console.log(jake.graduate());
